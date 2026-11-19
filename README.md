@@ -47,9 +47,4 @@
 
 ## 同步到 GitHub
 
-本地仓库已建好。推送到 GitHub 前需先登录：
-
-```bash
-gh auth login
-gh repo create clash-rules --private --source=. --push
-```
+已同步到 GitHub 私有仓库：[LTctfer/clash-rules](https://github.com/LTctfer/clash-rules)（2026-11-19 建仓并推送）。后续改动在本地提交后 `git push` 即可。
