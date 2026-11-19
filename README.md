@@ -47,4 +47,8 @@
 
 ## 同步到 GitHub
 
-已同步到 GitHub 私有仓库：[LTctfer/clash-rules](https://github.com/LTctfer/clash-rules)（2026-11-19 建仓并推送）。后续改动在本地提交后 `git push` 即可。
+已同步到 GitHub 公开仓库：[LTctfer/clash-rules](https://github.com/LTctfer/clash-rules)（2026-11-19 建仓，私有起步，当晚应要求改为公开以便客户端 URL 导入）。后续改动在本地提交后 `git push` 即可。
+
+客户端 URL 导入 override.js（任选其一）：
+- `https://raw.githubusercontent.com/LTctfer/clash-rules/main/override.js`
+- `https://cdn.jsdelivr.net/gh/LTctfer/clash-rules@main/override.js`（jsDelivr 缓存，更新可能延迟数小时）
