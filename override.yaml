@@ -1,0 +1,397 @@
+# ============================================================
+# Mihomo YAML 覆写（规则层）— 自维护仓库 clash-rules
+# 版本：2026-11-19
+#
+# 用途：给支持 YAML 覆写 / Merge 的客户端用（如 Clash Verge Rev 的 Merge）。
+# 本文件只包含「规则层」：全部 rule-providers + 需要抢在最前面命中的规则
+# （prepend-rules）。代理分组、DNS、hosts 的完整逻辑在 override.js 里，
+# 以 JS 版为准；两处规则如有分歧，先改 JS 再同步这里。
+#
+# 注意：prepend-rules 里的规则只引用 REJECT 和本文件定义的 rule-providers，
+# 不依赖 JS 生成的分组，单独使用也不会报错。
+# ============================================================
+
+rule-providers:
+  private:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/private.mrs"
+    path: ./ruleset/private.mrs
+    path-in-bundle: geo/geosite/private.mrs
+  private_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/private.mrs"
+    path: ./ruleset/private_ip.mrs
+    path-in-bundle: geo/geoip/private.mrs
+  games_cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/category-games@cn.mrs"
+    path: ./ruleset/games_cn.mrs
+    path-in-bundle: "geo/geosite/category-games@cn.mrs"
+  nvidia_cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/nvidia@cn.mrs"
+    path: ./ruleset/nvidia_cn.mrs
+    path-in-bundle: "geo/geosite/nvidia@cn.mrs"
+  apple_cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/apple@cn.mrs"
+    path: ./ruleset/apple_cn.mrs
+    path-in-bundle: "geo/geosite/apple@cn.mrs"
+  microsoft_cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/microsoft@cn.mrs"
+    path: ./ruleset/microsoft_cn.mrs
+    path-in-bundle: "geo/geosite/microsoft@cn.mrs"
+  geolocation-cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-cn.mrs"
+    path: ./ruleset/geolocation-cn.mrs
+    path-in-bundle: geo/geosite/geolocation-cn.mrs
+  cn_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/cn.mrs"
+    path: ./ruleset/cn_ip.mrs
+    path-in-bundle: geo/geoip/cn.mrs
+  googlefcm:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/googlefcm.mrs"
+    path: ./ruleset/googlefcm.mrs
+    path-in-bundle: geo/geosite/googlefcm.mrs
+  youtube:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/youtube.mrs"
+    path: ./ruleset/youtube.mrs
+    path-in-bundle: geo/geosite/youtube.mrs
+  google:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/google.mrs"
+    path: ./ruleset/google.mrs
+    path-in-bundle: geo/geosite/google.mrs
+  google_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/google.mrs"
+    path: ./ruleset/google_ip.mrs
+    path-in-bundle: geo/geoip/google.mrs
+  ai:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/category-ai-!cn.mrs"
+    path: ./ruleset/ai.mrs
+    path-in-bundle: "geo/geosite/category-ai-!cn.mrs"
+  github:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/github.mrs"
+    path: ./ruleset/github.mrs
+    path-in-bundle: geo/geosite/github.mrs
+  microsoft:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/microsoft.mrs"
+    path: ./ruleset/microsoft.mrs
+    path-in-bundle: geo/geosite/microsoft.mrs
+  microsoft_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/microsoft.mrs"
+    path: ./ruleset/microsoft_ip.mrs
+    path-in-bundle: geo/geoip/microsoft.mrs
+  apple:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/apple.mrs"
+    path: ./ruleset/apple.mrs
+    path-in-bundle: geo/geosite/apple.mrs
+  apple_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/apple.mrs"
+    path: ./ruleset/apple_ip.mrs
+    path-in-bundle: geo/geoip/apple.mrs
+  telegram:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/telegram.mrs"
+    path: ./ruleset/telegram.mrs
+    path-in-bundle: geo/geosite/telegram.mrs
+  telegram_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/telegram.mrs"
+    path: ./ruleset/telegram_ip.mrs
+    path-in-bundle: geo/geoip/telegram.mrs
+  steam:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/steam.mrs"
+    path: ./ruleset/steam.mrs
+    path-in-bundle: geo/geosite/steam.mrs
+  steam_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/steam.mrs"
+    path: ./ruleset/steam_ip.mrs
+    path-in-bundle: geo/geoip/steam.mrs
+  tiktok:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/tiktok.mrs"
+    path: ./ruleset/tiktok.mrs
+    path-in-bundle: geo/geosite/tiktok.mrs
+  tiktok_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/tiktok.mrs"
+    path: ./ruleset/tiktok_ip.mrs
+    path-in-bundle: geo/geoip/tiktok.mrs
+  twitter:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/twitter.mrs"
+    path: ./ruleset/twitter.mrs
+    path-in-bundle: geo/geosite/twitter.mrs
+  twitter_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/twitter.mrs"
+    path: ./ruleset/twitter_ip.mrs
+    path-in-bundle: geo/geoip/twitter.mrs
+  meta:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/meta.mrs"
+    path: ./ruleset/meta.mrs
+    path-in-bundle: geo/geosite/meta.mrs
+  facebook_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/facebook.mrs"
+    path: ./ruleset/facebook_ip.mrs
+    path-in-bundle: geo/geoip/facebook.mrs
+  line:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/line.mrs"
+    path: ./ruleset/line.mrs
+    path-in-bundle: geo/geosite/line.mrs
+  netflix:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/netflix.mrs"
+    path: ./ruleset/netflix.mrs
+    path-in-bundle: geo/geosite/netflix.mrs
+  netflix_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/netflix.mrs"
+    path: ./ruleset/netflix_ip.mrs
+    path-in-bundle: geo/geoip/netflix.mrs
+  pikpak:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/pikpak.mrs"
+    path: ./ruleset/pikpak.mrs
+    path-in-bundle: geo/geosite/pikpak.mrs
+  spotify:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/spotify.mrs"
+    path: ./ruleset/spotify.mrs
+    path-in-bundle: geo/geosite/spotify.mrs
+  spotify_ip:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: ipcidr
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geoip/spotify.mrs"
+    path: ./ruleset/spotify_ip.mrs
+    path-in-bundle: geo/geoip/spotify.mrs
+  cryptocurrency:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/category-cryptocurrency.mrs"
+    path: ./ruleset/cryptocurrency.mrs
+    path-in-bundle: geo/geosite/category-cryptocurrency.mrs
+  paypal:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/paypal.mrs"
+    path: ./ruleset/paypal.mrs
+    path-in-bundle: geo/geosite/paypal.mrs
+  patreon:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/patreon.mrs"
+    path: ./ruleset/patreon.mrs
+    path-in-bundle: geo/geosite/patreon.mrs
+  ehentai:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/ehentai.mrs"
+    path: ./ruleset/ehentai.mrs
+    path-in-bundle: geo/geosite/ehentai.mrs
+  geolocation-!cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-!cn.mrs"
+    path: "./ruleset/geolocation-!cn.mrs"
+    path-in-bundle: "geo/geosite/geolocation-!cn.mrs"
+  category-ads:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/category-ads.mrs"
+    path: ./ruleset/category-ads.mrs
+    path-in-bundle: geo/geosite/category-ads.mrs
+  fakeip_filter:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/fakeip-filter.mrs"
+    path: ./ruleset/fakeip_filter.mrs
+    path-in-bundle: geo/geosite/fakeip-filter.mrs
+  cn:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/cn.mrs"
+    path: ./ruleset/cn.mrs
+    path-in-bundle: geo/geosite/cn.mrs
+  douyin:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/appshubcc/bett-rules@meta/geo/geosite/douyin.mrs"
+    path: ./ruleset/douyin.mrs
+    path-in-bundle: geo/geosite/douyin.mrs
+  emby:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/666OS/rules@release/mihomo/domain/Emby.mrs"
+    path: ./ruleset/emby.mrs
+    path-in-bundle: geo/geosite/category-emby.mrs
+  emos:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://cdn.jsdmirror.com/gh/binaryu/emos-proxy-rule@main/rules/emos-mihomo.mrs"
+    path: ./ruleset/emos.mrs
+    path-in-bundle: geo/geosite/category-emby.mrs
+  cn_additional:
+    type: http
+    format: mrs
+    interval: 86400
+    behavior: domain
+    url: "https://static-file-global.353355.xyz/rules/cn-additional-list.mrs"
+    path: ./ruleset/cn_additional.mrs
+    path-in-bundle: geo/geosite/cn.mrs
+  anti_ad:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: "https://anti-ad.net/clash.yaml"
+    path: ./ruleset/anti_ad.yaml
+
+prepend-rules:
+  # 红果短剧（com.phoenix.read）穿山甲广告专项拦截，仅对该 App 生效
+  # 拦截后「看广告得金币 / 解锁集数」会加载失败；不要整域拦 snssdk / zijieapi / fqnovel，正片会一起死
+  - 'AND,((PROCESS-NAME,com.phoenix.read),(OR,((DOMAIN-KEYWORD,pangolin),(DOMAIN-SUFFIX,pglstatp-toutiao.com),(DOMAIN-SUFFIX,pglstatp-toutiao-b.com),(DOMAIN-KEYWORD,-ad-sign.byteimg.com),(DOMAIN,zlink.ugsdk.cn)))),REJECT'
+  # 广告大表前置（在订阅自带规则之前命中；误伤时在客户端把对应域名加白名单直连）
+  - 'RULE-SET,anti_ad,REJECT'
+  - 'RULE-SET,category-ads,REJECT'
